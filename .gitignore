@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+outputs/
+datasets/*
+!datasets/.gitkeep
+wandb/
+*.hdf5
+*.mp4
+.env

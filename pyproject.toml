@@ -1,0 +1,54 @@
+[project]
+name = "robot-act"
+version = "0.1.0"
+description = "Robot object manipulation via ACT / Diffusion policy to be trained on a specific taks."
+authors = [
+    { name = "Ilyes-Origamist", email = "ilyesorigamist@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "lerobot[aloha,diffusion,training]>=0.6.1",
+    "tensorboard>=2.21.0",
+]
+
+[project.optional-dependencies]
+cpu   = ["torch", "torchvision"]
+cu128 = ["torch", "torchvision"]
+cu130 = ["torch", "torchvision"]
+
+[project.scripts]
+robot-act = "robot_act:main"
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+conflicts = [[{ extra = "cpu" }, { extra = "cu128" }, { extra = "cu130" }]]
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cpu",   extra = "cpu" },
+  { index = "pytorch-cu128", extra = "cu128" },
+  { index = "pytorch-cu130", extra = "cu130" },
+]
+torchvision = [
+  { index = "pytorch-cpu",   extra = "cpu" },
+  { index = "pytorch-cu128", extra = "cu128" },
+  { index = "pytorch-cu130", extra = "cu130" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
