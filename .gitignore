@@ -1,9 +1,11 @@
 .venv/
 __pycache__/
 outputs/
+checkpoints/
 datasets/*
 !datasets/.gitkeep
 wandb/
 *.hdf5
 *.mp4
 .env
+*.pdf
